@@ -18,6 +18,9 @@ interface MovieContextType {
 
     isModalOpen: boolean;
     setModalOpen: (isOpen: boolean) => void;
+
+    selectedMovieDetails: MovieDetails | null;
+    setSelectedMovieDetails: (details: MovieDetails | null) => void;
 }
 
 
@@ -31,7 +34,7 @@ export const MovieProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const [trailerUrl, setTrailerUrl] = useState<string>("")
     const [playerMuted, setPlayerMuted] = useState<boolean>(false)
     const [isModalOpen, setModalOpen] = useState<boolean>(false);
-
+    const [selectedMovieDetails, setSelectedMovieDetails] = useState<MovieDetails | null>(null);
 
     return (
         <MovieContext.Provider value={{
@@ -41,11 +44,12 @@ export const MovieProvider: FC<{ children: ReactNode }> = ({ children }) => {
             trendingMovies, setTrendingMovies,
             trailerUrl, setTrailerUrl,
             playerMuted, setPlayerMuted,
-            isModalOpen, setModalOpen
+            isModalOpen, setModalOpen,
+            selectedMovieDetails, setSelectedMovieDetails,
         }}>
             {children}
         </MovieContext.Provider>
-    )
+    );
 }
 
 export const useMovieContext = () => {

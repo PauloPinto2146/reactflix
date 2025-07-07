@@ -35,7 +35,7 @@ const MainContent: FC = () => {
 
   const { cardState } = useCardContext();
 
-  const { selectedMovie, isModalOpen, setModalOpen } = useMovieContext();
+  const { selectedMovieDetails, isModalOpen, setModalOpen } = useMovieContext();
 
   const closeModal = () => setModalOpen(false);
 
@@ -48,9 +48,9 @@ const MainContent: FC = () => {
         x={cardState.position?.x || 0}
         y={cardState.position?.y || 0}
       />
-      {selectedMovie && (
+      {selectedMovieDetails && (
         <Modal
-          movieData={selectedMovie}
+          movieData={selectedMovieDetails}
           isOpen={isModalOpen}
           onClose={closeModal}
         />
