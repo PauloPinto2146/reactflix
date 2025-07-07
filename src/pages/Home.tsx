@@ -52,8 +52,16 @@ const Home: FC = () => {
         setPopularMovies(popularMoviesResult.data.results)
         const randomIndex = Math.floor(Math.random() * popularMoviesResult.data?.results.length);
         const randomMovie = popularMoviesResult.data?.results[randomIndex];
-        setSelectedMovie(randomMovie);
-        console.log(randomMovie)
+        if (randomMovie) {
+          const movieDetailsResult = await tmdbApi.getMovieDetails(randomMovie.id);
+          if (movieDetailsResult && movieDetailsResult.data) {
+            setSelectedMovie(movieDetailsResult.data);
+            console.log(movieDetailsResult.data);
+          } else {
+            setSelectedMovie(null);
+            console.log('Failed to fetch movie details');
+          }
+        }
       }
 
       // Tratamento de erros para todos os filmes top rated
@@ -81,7 +89,7 @@ const Home: FC = () => {
   return (
     <div>
       <Hero />
-      <div className='absolute w-full top-[31vh] md:top-[65vh] lg:top-[85vh] pl-10 pr-10 flex flex-col space-y-4 py-20'>
+      <div className='absolute w-full top-[31vh] md:top-[65vh] lg:top-[85vh] pl-10 pr-10 flex flex-col space-y-4'>
         {popularMovies && <Carousel title={'Popular'} items={popularMovies} />}
         {trendingMovies && <Carousel title={'Trending'} items={trendingMovies} />}
         {topRatedMovies && <Carousel title={'Top rated movies'} items={topRatedMovies} />}

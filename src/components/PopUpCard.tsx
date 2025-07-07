@@ -182,18 +182,20 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
                         <ThumbsUpIcon size={20} className="h-6 w-6" />
                     </button>
                 </div>
-                <button className="rounded-full transition-colors duration-200 p-3 border-2
-                        border-gray-700 hover:border-white"
+                <button
+                    className="rounded-full transition-colors
+                        duration-200 p-3 border-2 border-gray-700 hover:border-white"
                     onClick={() => {
                         setModalOpen(true);
-                        setSelectedMovie(favData as Movie);
+                        setSelectedMovie(favData as MovieDetails);
                         setCardState((prev: any) => ({
                             ...prev,
                             isHovered: false,
                             cardId: null,
                             item: null,
                         }));
-                    }}>
+                    }}
+                >
                     <ChevronDown size={20} className="h-6 w-6" />
                 </button>
             </div>

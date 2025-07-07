@@ -42,7 +42,7 @@ export const Hero: FC = () => {
     };
 
     return (
-        <main className="relative bg-[#141414] overflow-hidden">
+        <main className="relative bg-[#14141] overflow-hidden">
             {/*Video Player */}
             {trailerUrl && <VideoPlayer videoId={trailerUrl} customHeight="0" isMuted={playerMuted} />}
             {selectedMovie && !trailerUrl && (
@@ -56,7 +56,7 @@ export const Hero: FC = () => {
             {selectedMovie && (
 
                 <div className="absolute top-[38%] pl-12 w-full z-10">
-                    <h1 className="text-6xl md:text-8xl font-bold text-white mb-4">
+                    <h1 className="text-6xl md:text-8xl font-bold text-white mb-4 text-shadow-lg/100">
                         {/* SE window.innerWidth < 768 ENTÃO É MOBILE */}
                         {selectedMovie.title && selectedMovie.title.length > 20 &&
                             window.innerWidth < 768 ? selectedMovie.title.substring(0, 20) + "..."
