@@ -1,0 +1,17 @@
+@import url("https://fonts.cdnfonts.com/css/sharp-sans");
+@import "tailwindcss";
+
+@tailwind utilities;
+
+/* Define a cor customizada como variável CSS */
+@layer base {
+  :root {
+    --tw-bg-custom-dark: #141414;
+    --tw-font-sharp-sans: 'Sharp Sans', sans-serif;
+  }
+
+  body {
+    background-color: var(--tw-bg-custom-dark);
+    font-family: var(--tw-font-sharp-sans);
+  }
+}
