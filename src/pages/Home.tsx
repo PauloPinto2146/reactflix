@@ -81,7 +81,7 @@ const Home: FC = () => {
   return (
     <div>
       <Hero />
-      <div className='absolute w-full top-[31vh] md:top-[65vh] lg:top-[85vh] pl-10 pr-10 flex flex-col space-y-4'>
+      <div className='absolute w-full top-[31vh] md:top-[65vh] lg:top-[85vh] pl-10 pr-10 flex flex-col space-y-4 py-20'>
         {popularMovies && <Carousel title={'Popular'} items={popularMovies} />}
         {trendingMovies && <Carousel title={'Trending'} items={trendingMovies} />}
         {topRatedMovies && <Carousel title={'Top rated movies'} items={topRatedMovies} />}
