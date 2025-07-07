@@ -13,7 +13,7 @@ interface SimilarMoviesCardProps {
 }
 
 const SimilarMoviesCard: FC<SimilarMoviesCardProps> = ({ id, title, description, imageUrl, duration }) => {
-    const { setSelectedMovie, setModalOpen } = useMovieContext();
+    const { setModalOpen } = useMovieContext();
 
     //useNavigate vindo de react-router-dom para navegar programaticamente
     const navigate = useNavigate();
