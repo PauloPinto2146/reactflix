@@ -21,7 +21,7 @@ const SimilarMoviesCard: FC<SimilarMoviesCardProps> = ({ id, title, description,
     const [imageSrc] = useState<string>(imageUrl);
 
     const handlePlay = async () => {
-        const trailerRes = await tmdbApi.getMovieTrailer(parseInt(id));
+        const trailerRes = await tmdbApi.getMovieTrailer(id);
         if (trailerRes.error) {
             navigate(`/watch/404-not-found`);
             setModalOpen(false);

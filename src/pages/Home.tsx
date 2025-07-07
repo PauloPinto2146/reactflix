@@ -3,14 +3,13 @@ import { tmdbApi } from '../tmdb.Api'
 import { useMovieContext } from '../context/MovieContext'
 import Hero from '../components/Hero'
 import Carousel from '../components/Carousel'
-import toast from 'react-hot-toast'
 
 
 const Home: FC = () => {
 
   const [genresWithMovies, setGenresWithMovies] = useState<GenreWithMovie[] | null>(null)
 
-  const { popularMovies, selectedMovie, setPopularMovies, setSelectedMovie,
+  const { popularMovies, setPopularMovies, setSelectedMovie,
     setTopRatedMovies, setTrendingMovies,
     topRatedMovies, trendingMovies } = useMovieContext()
 

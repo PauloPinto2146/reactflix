@@ -15,11 +15,11 @@ interface PopUpCardProps {
 
 const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
 
-    const { setSelectedMovie , setModalOpen } = useMovieContext();
+    const { setSelectedMovie, setModalOpen } = useMovieContext();
     const { cardState, setCardState } = useCardContext();
 
     //importar cena de adicionar para a lista no utilsContext
-    const{addToFavoriteList} = useUtilsContext();
+    const { addToFavoriteList } = useUtilsContext();
 
     const [title, setTitle] = useState<string>("MOVIE");
     const [muted, setMuted] = useState<boolean>(false);
@@ -27,9 +27,9 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
     const [showTrailer, setShowTrailer] = useState<boolean>(false);
     const [imageUrl, setImageUrl] = useState<string>("");
     const [addedToFavorite, setAddedToFavorite] = useState<boolean>(false);
-    const [movieId, setMovieId] = useState<number>(0);
+    const [_movieId, setMovieId] = useState<number>(0);
     const [favData, setFavData] = useState<Movie | null>(null);
-    
+
 
     const handlePopHoverMoverLeave = (e: React.MouseEvent) => {
         //Aqui garantesse que quando este onMouseLeave ou onMouseMove dispara, 
@@ -71,16 +71,16 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
     }
     useEffect(() => {
         const handleScroll = () => {
-            if(cardState.isHovered){
-                setCardState((prev:any) =>({
+            if (cardState.isHovered) {
+                setCardState((prev: any) => ({
                     ...prev,
-                    isHovered:false
+                    isHovered: false
                 }));
             }
         };
         document.addEventListener("scroll", handleScroll);
-        return() =>{
-            document.removeEventListener("scroll",handleScroll);
+        return () => {
+            document.removeEventListener("scroll", handleScroll);
         };
     },
         [cardState.isHovered, setCardState]
@@ -97,7 +97,8 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
             //Verificar localstorage para ver quais moveis estão na lista 
             let list = JSON.parse(localStorage.getItem("movieList") || "[]");
 
-            setAddedToFavorite(list.some((item:Movie) => item.id === cardState.item.id))
+            setAddedToFavorite(list.some((item: Movie) => item.id === cardState.item?.id))
+
 
             const fetchTrailer = async () => {
                 if (!cardState.item) return;
@@ -111,7 +112,7 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
             fetchTrailer()
         }
     })
-    
+
     return (
         <div className="text-white flex flex-col z-40"
             style={
@@ -121,8 +122,7 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
                     left: `${x < 200 ? x + 60 : window.innerWidth - x < 200 ? x - 60 : x}px`,
                     ...(isHovered ? styles.popUpScaleUp : styles.popUpScaleDown),
                     ...styles.transitionAll,
-
-                }
+                } as React.CSSProperties
             }
             onMouseLeave={handlePopHoverMoverLeave}>
             <div
@@ -135,7 +135,7 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
                     </p>
                     <span className="absolute cursos-pointer z-50 transition-colors duration-200 
                         top-36 right-4 p-3 border-2 border-gray-700 rounded-full hover:border-white"
-                        onClick={() => {setMuted(!muted)}}>
+                        onClick={() => { setMuted(!muted) }}>
                         {muted ? <VolumeOff size={20} /> : <Volume2 size={20} />}
                     </span>
                 </div>
@@ -169,7 +169,7 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
                         border-gray-700 hover:border-white"
                         onClick={() => {
                             addToFavoriteList(favData as Movie);
-                            setAddedToFavorite(!addedToFavorite); 
+                            setAddedToFavorite(!addedToFavorite);
                         }}>
                         {addedToFavorite ? (
                             <Check size={20} className="h-6 w-6" />

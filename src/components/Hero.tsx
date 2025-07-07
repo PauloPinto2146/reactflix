@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 export const Hero: FC = () => {
 
     const { selectedMovie, trailerUrl, setTrailerUrl, playerMuted, 
-        setPlayerMuted, isModalOpen, setModalOpen } = useMovieContext()
+        setPlayerMuted, setModalOpen } = useMovieContext()
 
     const [volumeClick, setVolumeClick] = useState<boolean>(false)
 

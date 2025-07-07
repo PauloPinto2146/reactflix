@@ -1,4 +1,4 @@
-import { use, useEffect, useState, type FC } from 'react'
+import { useEffect, useState, type FC } from 'react'
 import { useParams } from 'react-router-dom'
 import { tmdbApi } from '../tmdb.Api'
 import Card from '../components/Card';

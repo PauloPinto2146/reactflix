@@ -1,4 +1,3 @@
-import { CardSim } from "lucide-react";
 import { createContext, useContext, useState, type FC, type ReactNode } from "react";
 
 interface CardState {
@@ -10,14 +9,14 @@ interface CardState {
 
 interface CardContextType {
     cardState: CardState;
-    setCardState: (state: CardState) => void;
+    setCardState: React.Dispatch<React.SetStateAction<CardState>>;
 }
 
 const CardContext = createContext<CardContextType | undefined>(undefined);
 
 export const CardProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
-    const [cardState, setCardState] = useState<CardState>({
+    const [cardState, setCardState ] = useState<CardState>({
         item: null,
         isHovered: false,
         cardId: null,
